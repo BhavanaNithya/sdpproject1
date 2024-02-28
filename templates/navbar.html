@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg" style="background-color: #dd95e8;">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{% url 'newHomePage' %}" style="color: purple;">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" style="color: purple;">Features</a>
+        </li>
+            <li>
+          {% if user.is_authenticated %}
+          <li class="nav-item">
+          <span class="nav-link">Welcome,{{user.username}}</span>
+        </li>
+          {% else %}
+       <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="{% url 'signup' %}" style="color: purple;">Signup</a>
+</li>
+
+          {% endif %}
+         </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+        </li>
+
+        <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: purple;">
+    Dropdown button
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #e0adf0;">
+    <a class="dropdown-item" href="{% url 'travelPackage' %}">Travel</a>
+    <a class="dropdown-item" href="{% url 'print1' %}">Print</a>
+    <a class="dropdown-item" href="{% url 'randomcall' %}">OTP Generator</a>
+    <a class="dropdown-item" href="{% url 'getdate1' %}">Getdate</a>
+    <a class="dropdown-item" href="{% url 'piechartcalling' %}">Get Pie chart</a>
+    <a class="dropdown-item" href="{% url 'carcalling' %}">Rental cars</a>
+    <a class="dropdown-item" href="http://127.0.0.1:8000/app">Crud_app</a>
+    <a class="dropdown-item" href="{% url 'weatherpagecall' %}">Weather_app</a>
+    <a class="dropdown-item" href="{% url 'feedbackcalling' %}">FeedBack</a>
+
+
+  </div>
+</div>
+        <li class="nav-item">
+          <a class="btn btn-primary" href="{% url 'registercalling' %}" role="button" style="background-color: purple;">Register</a>
+        </li>
+
+         <li class="nav-item">
+          <a class="btn btn-primary" href="{% url 'login' %}" role="button" style="background-color: purple;">Login</a>
+        </li>
+
+         {% if user.is_authenticated %}
+<form action="{% url 'logout' %}" method="post">
+  {% csrf_token %}
+  <button type="submit" class="btn btn-primary" style="background-color: #a60d91;">Logout</button>
+</form>
+{% endif %}
+
+
+
+
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
+{% block body %}
+
+{% endblock %}
+</body>
+</html>
